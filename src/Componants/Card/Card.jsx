@@ -17,6 +17,7 @@ const Card = ({ coffee }) => {
           <p className="text-gray-700"> Type: {type}</p>
           <p className="text-gray-700"> Origin: {origin}</p>
           <p className="text-gray-700"> Rating: {rating}</p>
+          <p className="text-gray-700"> Popularity: {popularity}</p>
         </div>
       </Link>
     </div>
