@@ -39,6 +39,6 @@ const Coffees = () => {
     </div>
    </section>
   );
-};
+}; 
 
 export default Coffees;
