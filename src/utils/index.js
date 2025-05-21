@@ -1,10 +1,15 @@
+import toast from "react-hot-toast"
+
 // 1. Add a coffee to local storage 
 const addFavourite = (coffee) => {
     // get all previously saved coffee data
     const favourites = getAllFavourites()
-    console.log(favourites);
+    const isExist = favourites.find( item => item .id == coffee.id)
+    if (isExist) return toast.error('Coffee already exist');
+    
      favourites.push (coffee)
      localStorage.setItem('favourites', JSON.stringify(favourites) )
+     toast.success('Successfully addeded!');
 }
 
 
