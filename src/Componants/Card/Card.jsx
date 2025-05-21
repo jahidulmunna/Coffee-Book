@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
 
-const Card = ({ coffee }) => {
+const Card = ({ coffee, handleRemove }) => {
+  
+  const {pathname} = useLocation() // showing remove icon in dashboard
+
   const { name, image, category, origin, type, id, rating, popularity } =
     coffee || {};
 
@@ -20,6 +24,16 @@ const Card = ({ coffee }) => {
           <p className="text-gray-700"> Popularity: {popularity}</p>
         </div>
       </Link>
+
+      {/* remove icon */}
+
+      {   
+        pathname === '/dashboard' && 
+        <div onClick={() => handleRemove(id)} 
+        className="absolute p-3 bg-warning rounded-full cursor-pointer -top-5 -right-5"><FaTrash size={15}  /></div>
+         
+      }
+
     </div>
   );
 };

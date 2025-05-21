@@ -1,16 +1,25 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import nutritionImg from "../../assets/nutrition.png";
-import { addFavourite } from "../../utils";
+import { addFavourite, getAllFavourites } from "../../utils";
 
 const CoffeeDetails = () => {
   const allCoffeesData = useLoaderData();
   const { id } = useParams();
-
   const [coffee, setCoffee] = useState({});
+  // Favourite button hide
+  const [isFavourite, setIsFavourite] = useState(false)
+
   useEffect(() => {
     const singleData = allCoffeesData.find((coffee) => coffee.id == id);
     setCoffee(singleData);
+    // Favourite button hide
+    const favourite = getAllFavourites()
+    const isExist = favourite.find( item => item .id == singleData.id)
+    if (isExist) {
+      setIsFavourite(true)
+    }
+
   }, [allCoffeesData, id]);
 
   const {
@@ -28,7 +37,7 @@ const CoffeeDetails = () => {
 //   Handle Favourite Button Click 
     const handleFavourite = (coffee) => {
      addFavourite(coffee)
-    
+     setIsFavourite(true); 
     }
 
   return (
@@ -48,7 +57,9 @@ const CoffeeDetails = () => {
           <p className="text-base">Rating: {rating} </p>
         </div>
         <div>
-          <button onClick={ () => handleFavourite(coffee)} className="btn btn-warning"> Add Favourite </button>
+         
+          <button   disabled = {isFavourite}
+          onClick={ () => handleFavourite(coffee)} className="btn btn-warning"> Add Favourite </button>
         </div>
       </div>
 
@@ -70,15 +81,7 @@ const CoffeeDetails = () => {
                   </li>
                 ))}
             </ul>
-            {/* <h1 className="text-2xl font-thin">Nutririon:</h1>
-            <ul className="text-xl ml-12">
-              {nutrition_info &&
-                object.keys(nutrition_info).map((n) => (
-                  <li className="list-disc" key={nutrition_info[n]}>
-                    {n} : {nutrition_info[n]}
-                  </li>
-                ))}
-            </ul> */}
+           
           </div>
         </div>
         <div className="flex-1">
