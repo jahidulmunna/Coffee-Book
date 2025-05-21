@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import nutritionImg from "../../assets/nutrition.png";
+import { addFavourite, getAllFavourites } from "../../utils";
 
 const CoffeeDetails = () => {
   const allCoffeesData = useLoaderData();
@@ -23,6 +24,13 @@ const CoffeeDetails = () => {
     popularity,
   } = coffee;
 
+
+//   Handle Favourite Button Click 
+    const handleFavourite = (coffee) => {
+     addFavourite(coffee)
+    
+    }
+
   return (
     <div className="my-12">
       {/* Description */}
@@ -40,7 +48,7 @@ const CoffeeDetails = () => {
           <p className="text-base">Rating: {rating} </p>
         </div>
         <div>
-          <button className="btn btn-warning"> Add Favourite </button>
+          <button onClick={ () => handleFavourite(coffee)} className="btn btn-warning"> Add Favourite </button>
         </div>
       </div>
 
