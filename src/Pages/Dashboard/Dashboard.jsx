@@ -14,6 +14,9 @@ const Dashboard = () => {
 
      const handleRemove = (id) => {
           removeFavourite(id)
+// Change data set again in state
+          const favourites = getAllFavourites() 
+          setCoffees(favourites)
       }
 
      return (
