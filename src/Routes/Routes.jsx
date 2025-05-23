@@ -14,24 +14,24 @@ const routes = createBrowserRouter([
     {
         path: '/',
         element: <Home> </Home>,
-        loader: () => fetch('../../../public/categories.json'),
+        loader: () => fetch('/categories.json'),
         children: [
           {
             path: '/',
             element: <CoffeeCards></CoffeeCards>,
-            loader: () => fetch('../../public/coffees.json')
+            loader: () => fetch('/coffees.json')
           },
           {
             path: '/category/:category',
             element: <CoffeeCards></CoffeeCards>,
-            loader: () => fetch('../../public/coffees.json')
+            loader: () => fetch('/coffees.json')
           },
         ],
     },
     {
       path: '/coffees',
       element: <Coffees> </Coffees>,
-       loader: () => fetch('../../public/coffees.json')
+       loader: () => fetch('/coffees.json')
     },
     {
       path: '/dashboard',
@@ -40,8 +40,17 @@ const routes = createBrowserRouter([
     {
       path: '/coffees/:id',
       element: <CoffeeDetails></CoffeeDetails>,
-      loader: () => fetch('../../public/coffees.json')
-
+      loader: () => fetch('/coffees.json')
+    },
+    {
+      path: 'coffees/coffees/:id',
+      element: <CoffeeDetails></CoffeeDetails>,
+      loader: () => fetch('/coffees.json')
+    },
+     {
+       path: "/category/:category/coffees/:id",
+       element: <CoffeeDetails />,
+       loader: () => fetch("/coffees.json"),
     },
    
 

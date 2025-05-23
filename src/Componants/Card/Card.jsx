@@ -2,15 +2,15 @@ import { Link, useLocation } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 
 const Card = ({ coffee, handleRemove }) => {
-  
   const {pathname} = useLocation() // showing remove icon in dashboard
 
   const { name, image, category, origin, type, id, rating, popularity } =
-    coffee || {};
+  coffee || {};
 
+  
   return (
     <div className="flex relative ">
-      <Link to={`coffees/${id}`}
+      <Link to={`/coffees/${id}`}
        className=" transition hover:scale-105 shadow-xl rounded-xl overflow-hidden ">
         <figure className="w-full h-48 overflow-hidden">
           <img src={image} alt="" className="" />

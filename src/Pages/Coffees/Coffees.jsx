@@ -5,6 +5,7 @@ import Card from "../../Componants/Card/Card";
 const Coffees = () => {
   const data = useLoaderData();
   const [coffees, setCoffees] = useState(data)
+  console.log(coffees)
   const handleSort = (sortBy) => {
     if(sortBy==='popularity') {
       // Sort By Popularity
